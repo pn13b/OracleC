@@ -7,12 +7,25 @@
 //============================================================================
 
 #include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
 
+void readInputFile(string);
+
 int main() {
-	cout
-			<< "This is an empty main method"
-			<< endl;
+	cout << "Welcome to the program" << endl;
+	
+	string name;
+	
+	cout << "Enter filename" << endl;
+	cin >> name;
+	cout << name << endl;
+	
+	readInputFile(name);
+
+	
+	
 	return 0;
 }
 
@@ -20,7 +33,17 @@ int main() {
  * Method to read the input file
  */
 void readInputFile(string inputFilePath) {
-
+	string line;
+	ifstream myfile (inputFilePath.c_str());
+	
+	if(myfile.is_open())
+	{
+		while(getline(myfile, line))
+			cout << line << '\n';
+		myfile.close();
+	}
+	else
+		cout << "unable to open file" << endl;
 }
 
 /*
