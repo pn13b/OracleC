@@ -1,0 +1,12 @@
+The write up asks us to add a paragraph to this file. It doesn't exactly specify
+what paragraph to add so I'm just adding this paragraph in the hopes that this
+will suffice.
+
+C:\Users\Paul\Documents\GitHub\OracleC [master +1 ~0 -0]> git status
+On branch master
+Yourbranch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes to the committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:    book.txt
