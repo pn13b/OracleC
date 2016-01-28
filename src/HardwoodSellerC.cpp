@@ -11,7 +11,9 @@
 #include <fstream>
 using namespace std;
 
+
 void readInputFile(string);
+void basics(string);
 
 int main() {
 	cout << "Welcome to the program" << endl;
@@ -38,8 +40,11 @@ void readInputFile(string inputFilePath) {
 	
 	if(myfile.is_open())
 	{
-		while(getline(myfile, line))
-			cout << line << '\n';
+		cout << "made it" << endl;
+		getline(myfile, line);
+		line.append("\n");
+		basics(line);
+		
 		myfile.close();
 	}
 	else
@@ -52,4 +57,33 @@ void readInputFile(string inputFilePath) {
 double deliveryTime() {
 	double deliveryETA = 0.0;
 	return deliveryETA;
+}
+
+
+void basics(string liner){
+	int i = 0;
+	short trigger = 0;
+	
+	cout << "Name: ";
+	
+	while(liner[i] != '\n')
+	{
+		if(liner[i] != ';')
+			cout << liner[i];
+		else
+		{
+			cout << endl;
+			if(trigger == 1)
+				cout << "Date: ";
+			else
+			{
+				cout << "Address: ";
+				++trigger;
+			}
+		}
+		++i;
+	}
+	
+	cout << endl;
+	
 }
