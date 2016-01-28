@@ -1,0 +1,9 @@
+a. Two commits have been done to the repository by the end of step 11.
+b. Five months ago
+c. None.
+d. They were not modified at all, just commited.
+e. git status only shows what files have changed while git log shows the
+    repository history with more detail.
+f. git log --follow main.java
+g. git --grep=transaction
+h. git --author=Lauren --since=01/05/2016 --until=02/16/2016
