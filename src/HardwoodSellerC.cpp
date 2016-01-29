@@ -27,10 +27,9 @@ int main() {
 	
 	string name;
 	
-	cout << "Enter filename" << endl;
+	cout << "Enter filename: ";
 	cin >> name;
-	cout << name << endl;
-	
+	cout << endl;
 	readInputFile(name);
 
 	
@@ -71,7 +70,6 @@ double deliveryTime() {
 
 void woodDataPrinter(string liner)
 {
-	cout << liner << endl;
 	string temp;
 	string holder;
 	short tigger = 0;
@@ -86,7 +84,7 @@ void woodDataPrinter(string liner)
 		{
 			temp = liner.substr(trailing, i-trailing);
 			trailing = i+1;
-			cout << temp << endl;
+			//cout << temp << endl;
 			
 			if(liner[i] == ':')
 				t.name = temp;
@@ -100,11 +98,41 @@ void woodDataPrinter(string liner)
 	}
 	
 	cout << endl;
+	double totalCost = 0;
 	
 	for(int k = 0; k != amounts.size(); ++k)
-		cout << "Name: " << amounts[k].name << " Amount: " << amounts[k].amount << endl;
-	
-	cout << liner << endl;
+	{
+		cout << "Name: " << amounts[k].name << ", Amount: " <<
+			amounts[k].amount << " BF, Cost: $";
+			
+		if(amounts[k].name == "Cherry") {
+			cout << 5.95;
+			totalCost += 5.95;
+		}
+		else if(amounts[k].name == "Curly Maple") {
+			cout << 6.00;
+			totalCost += 6.00;
+		}
+		else if(amounts[k].name == "Genuine Mahogany") {
+			cout << 9.60;
+			totalCost += 9.60;
+		}
+		else if(amounts[k].name == "Wenge") {
+			cout << 22.35;
+			totalCost += 22.35;
+		}
+		else if(amounts[k].name == "White Oak") {
+			cout << 6.70;
+			totalCost += 6.70;
+		}
+		else if(amounts[k].name == "Sawdust") {
+			cout << 1.5;
+			totalCost +=1.5;
+		}
+		
+		cout << endl;
+	}
+	cout << "\nTotal cost: " << totalCost << endl;
 }
 
 
