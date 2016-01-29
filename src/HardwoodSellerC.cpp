@@ -13,14 +13,16 @@
 #include <cstdlib>
 using namespace std;
 
+struct wood {
+	string name;
+	double amount;
+	double hours;
+};
+
 void readInputFile(string);
 void basics(string);
 void woodDataPrinter(string);
-
-	struct wood {
-		string name;
-		int amount;
-	};
+double deliveryTime(vector<wood>);
 
 int main() {
 	cout << "Welcome to the program" << endl;
@@ -62,8 +64,52 @@ void readInputFile(string inputFilePath) {
 /*
  * Method to compute the deliveryTime
  */
-double deliveryTime() {
+double deliveryTime(vector<wood> amounts) {
 	double deliveryETA = 0.0;
+	
+	for(int i = 0; i != amounts.size(); ++i)
+	{		
+		if(amounts[i].name == "Cherry") {
+			amounts[i].hours = 2.5;
+		}
+		else if(amounts[i].name == "Curly Maple") {
+			amounts[i].hours = 1.5;
+		}
+		else if(amounts[i].name == "Genuine Mahogany") {
+			amounts[i].hours = 3;
+		}
+		else if(amounts[i].name == "Wenge") {
+			amounts[i].hours = 5;
+		}
+		else if(amounts[i].name == "White Oak") {
+			amounts[i].hours = 2.3;
+		}
+		else if(amounts[i].name == "Sawdust") {
+			amounts[i].hours = 1;
+		}
+	}
+	
+	for(int k = 0; k != amounts.size(); ++k)
+	{
+		if((amounts[k].amount >= 1) && (amounts[k].amount <= 100))
+			amounts[k].hours *= 1;
+		else if((amounts[k].amount >= 101) && (amounts[k].amount <= 200))
+			amounts[k].hours *= 2;
+		else if((amounts[k].amount >= 201) && (amounts[k].amount <= 300))
+			amounts[k].hours *= 3;
+		else if((amounts[k].amount >= 301) && (amounts[k].amount <= 400))
+			amounts[k].hours *= 4;
+		else if((amounts[k].amount >= 401) && (amounts[k].amount <= 500))
+			amounts[k].hours *= 5;
+		else if((amounts[k].amount >= 501) && (amounts[k].amount <= 1000))
+			amounts[k].hours *= 5.5;
+	}
+	
+	for(int j = 0; j != amounts.size(); j++)
+	{
+		deliveryETA += amounts[j].hours;
+	}
+	
 	return deliveryETA;
 }
 
@@ -99,6 +145,9 @@ void woodDataPrinter(string liner)
 	
 	cout << endl;
 	double totalCost = 0;
+	double estimate;
+	
+	estimate = deliveryTime(amounts);
 	
 	for(int k = 0; k != amounts.size(); ++k)
 	{
@@ -106,33 +155,34 @@ void woodDataPrinter(string liner)
 			amounts[k].amount << " BF, Cost: $";
 			
 		if(amounts[k].name == "Cherry") {
-			cout << 5.95;
-			totalCost += 5.95;
+			totalCost = totalCost + (5.95 * amounts[k].amount);
+			cout << (5.95 * amounts[k].amount);
 		}
 		else if(amounts[k].name == "Curly Maple") {
-			cout << 6.00;
-			totalCost += 6.00;
+			totalCost = totalCost + (6.00 * amounts[k].amount);
+			cout << (6.00 * amounts[k].amount);
 		}
 		else if(amounts[k].name == "Genuine Mahogany") {
-			cout << 9.60;
-			totalCost += 9.60;
+			totalCost = totalCost + (9.60 * amounts[k].amount);
+			cout << (9.60 * amounts[k].amount);
 		}
 		else if(amounts[k].name == "Wenge") {
-			cout << 22.35;
-			totalCost += 22.35;
+			totalCost = totalCost + (22.35 * amounts[k].amount);
+			cout << (22.35 * amounts[k].amount);
 		}
 		else if(amounts[k].name == "White Oak") {
-			cout << 6.70;
-			totalCost += 6.70;
+			totalCost = totalCost + (6.70 * amounts[k].amount);
+			cout << (6.70 * amounts[k].amount);
 		}
 		else if(amounts[k].name == "Sawdust") {
-			cout << 1.5;
-			totalCost +=1.5;
+			totalCost = totalCost + (1.5 * amounts[k].amount);
+			cout << (1.5 * amounts[k].amount);
 		}
 		
 		cout << endl;
 	}
-	cout << "\nTotal cost: " << totalCost << endl;
+	cout << "\nTotal cost: $" << totalCost << endl;
+	cout << "Total time: " << estimate << " hours" << endl;
 }
 
 
@@ -161,5 +211,4 @@ void basics(string liner){
 	}
 	
 	cout << endl;
-	
 }
