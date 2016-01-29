@@ -9,11 +9,18 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <cstdlib>
 using namespace std;
-
 
 void readInputFile(string);
 void basics(string);
+void woodDataPrinter(string);
+
+	struct wood {
+		string name;
+		int amount;
+	};
 
 int main() {
 	cout << "Welcome to the program" << endl;
@@ -40,11 +47,13 @@ void readInputFile(string inputFilePath) {
 	
 	if(myfile.is_open())
 	{
-		cout << "made it" << endl;
 		getline(myfile, line);
-		line.append("\n");
+		line += '\n';
 		basics(line);
-		
+		getline(myfile, line);
+		line += '\n';
+		woodDataPrinter(line);
+
 		myfile.close();
 	}
 	else
@@ -57,6 +66,45 @@ void readInputFile(string inputFilePath) {
 double deliveryTime() {
 	double deliveryETA = 0.0;
 	return deliveryETA;
+}
+
+
+void woodDataPrinter(string liner)
+{
+	cout << liner << endl;
+	string temp;
+	string holder;
+	short tigger = 0;
+	vector<wood> amounts;
+	wood t;
+	
+	int trailing = 0;
+	
+	for(int i = 0; i != liner.length(); ++i)
+	{
+		if(liner[i] == ':' || liner[i] == ';' || liner[i] == '\n')
+		{
+			temp = liner.substr(trailing, i-trailing);
+			trailing = i+1;
+			cout << temp << endl;
+			
+			if(liner[i] == ':')
+				t.name = temp;
+			else if(liner[i] == ';' || liner[i] == '\n')
+			{
+				t.amount = atoi(temp.c_str());
+				amounts.push_back(t);
+			}
+			temp.clear();
+		}
+	}
+	
+	cout << endl;
+	
+	for(int k = 0; k != amounts.size(); ++k)
+		cout << "Name: " << amounts[k].name << " Amount: " << amounts[k].amount << endl;
+	
+	cout << liner << endl;
 }
 
 
